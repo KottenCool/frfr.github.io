@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cornelius Johnson - Dynamic Info</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: #4CAF50;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            width: 100%;
+            max-width: 400px;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        footer {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #888;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .card {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Cornelius Johnson</h1>
+        <p>Dynamic Information About Two Remarkable Figures</p>
+    </header>
+
+    <div class="container">
+        <div class="card" id="painter-card">
+            <h2>Cornelius Johnson (Baroque Painter)</h2>
+            <p>Cornelius Johnson was a Baroque painter, considered the most important native English portraitist of the early 17th century. He was the son of Dutch parents <button class="citation-flag" data-index="2">.</p>
+        </div>
+
+        <div class="card" id="athlete-card">
+            <h2>Cornelius Johnson (Wide Receiver)</h2>
+            <p>Cornelius Johnson played college football for the Michigan Wolverines, winning three consecutive Big Ten Conference titles and a national championship in 2023 <button class="citation-flag" data-index="1">. He was also recognized as the Gatorade Player of the Year in 2018 <button class="citation-flag" data-index="9">.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 | AI-Generated Content | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // Simulate dynamic content generation on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const painterCard = document.getElementById('painter-card');
+            const athleteCard = document.getElementById('athlete-card');
+
+            // Randomly generate additional info for the painter
+            const painterFacts = [
+                "He was known for his detailed and elegant portraits.",
+                "His works are displayed in prestigious galleries worldwide.",
+                "Johnson's style reflects a blend of Dutch and English influences."
+            ];
+            const randomPainterFact = painterFacts[Math.floor(Math.random() * painterFacts.length)];
+            painterCard.innerHTML += `<p>${randomPainterFact}</p>`;
+
+            // Randomly generate additional info for the athlete
+            const athleteFacts = [
+                "He achieved a top 1% Combine performance with an RAS score of 9.90 <button class="citation-flag" data-index="4">.",
+                "As a senior, he caught 50 passes for 826 yards and 12 touchdowns <button class="citation-flag" data-index="6">.",
+                "His career-best game included 9 receptions against Iowa <button class="citation-flag" data-index="8">."
+            ];
+            const randomAthleteFact = athleteFacts[Math.floor(Math.random() * athleteFacts.length)];
+            athleteCard.innerHTML += `<p>${randomAthleteFact}</p>`;
+        });
+    </script>
+</body>
+</html>
