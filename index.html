@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cornelius Johnson - Dynamic Info</title>
+    <title>Kotten: The Sigma Biy</title>
     <style>
         /* General Reset */
         * {
@@ -13,9 +13,11 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-            color: #333;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(45deg, #ff6f61, #ffcc00, #6bff7b, #61cfff);
+            background-size: 300% 300%;
+            animation: gradientBG 10s infinite alternate;
+            color: #fff;
             line-height: 1.6;
             display: flex;
             flex-direction: column;
@@ -25,20 +27,29 @@
             overflow-x: hidden;
         }
 
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
         header {
             text-align: center;
             margin-bottom: 2rem;
+            animation: pulse 2s infinite;
         }
 
         header h1 {
-            font-size: 2.5rem;
-            color: #4CAF50;
+            font-size: 4rem;
+            text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+            color: #fff;
             margin-bottom: 0.5rem;
         }
 
         header p {
-            font-size: 1.2rem;
-            color: #666;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #ff00ff;
         }
 
         .container {
@@ -52,40 +63,61 @@
         }
 
         .card {
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid #ff00ff;
+            border-radius: 20px;
+            box-shadow: 0 0 20px #ff00ff;
+            padding: 2rem;
             width: 100%;
             max-width: 400px;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: float 5s infinite alternate;
         }
 
         .card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-20px);
+            box-shadow: 0 0 40px #ff00ff;
         }
 
         .card h2 {
-            font-size: 1.8rem;
+            font-size: 2rem;
+            text-shadow: 0 0 5px #ff00ff;
+            color: #fff;
             margin-bottom: 1rem;
-            color: #333;
         }
 
         .card p {
             font-size: 1rem;
-            color: #555;
+            color: #ddd;
         }
 
         footer {
             margin-top: 2rem;
-            font-size: 0.9rem;
-            color: #888;
+            font-size: 1rem;
+            color: #ff00ff;
             text-align: center;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-10px); }
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
         }
 
         @media (max-width: 768px) {
             header h1 {
-                font-size: 2rem;
+                font-size: 3rem;
             }
 
             .card {
@@ -96,24 +128,28 @@
 </head>
 <body>
     <header>
-        <h1>Cornelius Johnson</h1>
-        <p>Dynamic Information About Two Remarkable Figures</p>
+        <h1>KOTTEN: THE SIGMA BIY</h1>
+        <p>AI-Generated Brainrot Edition <button class="citation-flag" data-index="1"></p>
     </header>
 
     <div class="container">
         <div class="card" id="painter-card">
-            <h2>Cornelius Johnson (Baroque Painter)</h2>
+            <h2>Cornelius Johnson (The OG Sigma Painter)</h2>
             <p>Cornelius Johnson was a Baroque painter, considered the most important native English portraitist of the early 17th century. He was the son of Dutch parents <button class="citation-flag" data-index="2">.</p>
+            <p>He painted portraits on every scale, from miniatures to full-length groups, adapting to changing patronage contexts and markets <button class="citation-flag" data-index="3">.</p>
+            <p>His work is displayed in prestigious galleries worldwide, making him a true sigma male of his time.</p>
         </div>
 
         <div class="card" id="athlete-card">
-            <h2>Cornelius Johnson (Wide Receiver)</h2>
-            <p>Cornelius Johnson played college football for the Michigan Wolverines, winning three consecutive Big Ten Conference titles and a national championship in 2023 <button class="citation-flag" data-index="1">. He was also recognized as the Gatorade Player of the Year in 2018 <button class="citation-flag" data-index="9">.</p>
+            <h2>Cornelius Johnson (Wide Receiver Legend)</h2>
+            <p>Cornelius Johnson played college football for the Michigan Wolverines, winning three consecutive Big Ten Conference titles and a national championship in 2023 <button class="citation-flag" data-index="4">.</p>
+            <p>He concluded his high school career with 2,167 receiving yards and 33 touchdowns, earning All-New England honors <button class="citation-flag" data-index="6">.</p>
+            <p>As a senior, he caught 50 passes for 826 yards and 12 touchdowns, proving he's not just a jock but a certified sigma biy <button class="citation-flag" data-index="6">.</p>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2025 | AI-Generated Content | All Rights Reserved</p>
+        <p>&copy; 2025 | KOTTEN: THE SIGMA BIY | BRAINROT EDITION</p>
     </footer>
 
     <script>
