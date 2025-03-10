@@ -2,180 +2,131 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kotten: The Sigma Biy</title>
+    <title>Cornelius Jonnson's Brainrot Emporium</title>
     <style>
-        /* General Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            background: linear-gradient(45deg, #ff6f61, #ffcc00, #6bff7b, #61cfff);
-            background-size: 300% 300%;
-            animation: gradientBG 10s infinite alternate;
-            color: #fff;
-            line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            overflow-x: hidden;
+            background: #000;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            padding: 20px;
+            animation: glitch 2s infinite;
         }
-
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
-        }
-
-        header {
+        
+        h1 {
             text-align: center;
-            margin-bottom: 2rem;
-            animation: pulse 2s infinite;
-        }
-
-        header h1 {
-            font-size: 4rem;
-            text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
-            color: #fff;
-            margin-bottom: 0.5rem;
-        }
-
-        header p {
-            font-size: 1.5rem;
+            font-size: 3em;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #ff00ff;
+            letter-spacing: 5px;
+            animation: flicker 1s infinite;
         }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            justify-content: center;
+        
+        #meme-container {
+            margin: 50px auto;
+            width: 80%;
+            max-width: 600px;
+            border: 2px solid #00ff00;
+            padding: 20px;
+            box-shadow: 0 0 20px #00ff00;
+            transform: rotate(-2deg);
         }
-
-        .card {
-            background: rgba(0, 0, 0, 0.7);
-            border: 2px solid #ff00ff;
-            border-radius: 20px;
-            box-shadow: 0 0 20px #ff00ff;
-            padding: 2rem;
+        
+        #meme-image {
             width: 100%;
-            max-width: 400px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            animation: float 5s infinite alternate;
+            height: auto;
+            border: 1px solid #00ff00;
+            transition: transform 0.3s;
         }
-
-        .card:hover {
-            transform: translateY(-20px);
-            box-shadow: 0 0 40px #ff00ff;
+        
+        #meme-image:hover {
+            transform: rotate(5deg) scale(1.05);
         }
-
-        .card h2 {
-            font-size: 2rem;
-            text-shadow: 0 0 5px #ff00ff;
-            color: #fff;
-            margin-bottom: 1rem;
-        }
-
-        .card p {
-            font-size: 1rem;
-            color: #ddd;
-        }
-
-        footer {
-            margin-top: 2rem;
-            font-size: 1rem;
-            color: #ff00ff;
+        
+        #brainrot-text {
+            margin-top: 20px;
+            font-size: 1.2em;
             text-align: center;
-            animation: blink 1s infinite;
+            animation: text-fade 3s infinite;
         }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+        
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
         }
-
-        @keyframes float {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-10px); }
+        
+        @keyframes flicker {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+            20%, 24%, 55% { opacity: 0; }
         }
-
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 3rem;
-            }
-
-            .card {
-                padding: 1rem;
-            }
+        
+        @keyframes text-fade {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>KOTTEN: THE SIGMA BIY</h1>
-        <p>AI-Generated Brainrot Edition <button class="citation-flag" data-index="1"></p>
-    </header>
-
-    <div class="container">
-        <div class="card" id="painter-card">
-            <h2>Cornelius Johnson (The OG Sigma Painter)</h2>
-            <p>Cornelius Johnson was a Baroque painter, considered the most important native English portraitist of the early 17th century. He was the son of Dutch parents <button class="citation-flag" data-index="2">.</p>
-            <p>He painted portraits on every scale, from miniatures to full-length groups, adapting to changing patronage contexts and markets <button class="citation-flag" data-index="3">.</p>
-            <p>His work is displayed in prestigious galleries worldwide, making him a true sigma male of his time.</p>
-        </div>
-
-        <div class="card" id="athlete-card">
-            <h2>Cornelius Johnson (Wide Receiver Legend)</h2>
-            <p>Cornelius Johnson played college football for the Michigan Wolverines, winning three consecutive Big Ten Conference titles and a national championship in 2023 <button class="citation-flag" data-index="4">.</p>
-            <p>He concluded his high school career with 2,167 receiving yards and 33 touchdowns, earning All-New England honors <button class="citation-flag" data-index="6">.</p>
-            <p>As a senior, he caught 50 passes for 826 yards and 12 touchdowns, proving he's not just a jock but a certified sigma biy <button class="citation-flag" data-index="6">.</p>
-        </div>
+    <h1>Cornelius Jonnson's <br>Reality Distortion Field</h1>
+    
+    <div id="meme-container">
+        <img id="meme-image" src="" alt="Random Brainrot Meme">
+        <div id="brainrot-text"></div>
     </div>
 
-    <footer>
-        <p>&copy; 2025 | KOTTEN: THE SIGMA BIY | BRAINROT EDITION</p>
-    </footer>
-
     <script>
-        // Simulate dynamic content generation on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            const painterCard = document.getElementById('painter-card');
-            const athleteCard = document.getElementById('athlete-card');
+        // Random title generator
+        const titles = [
+            "Cornelius Jonnson's Cerebral Circus",
+            "The Jonnson Paradox: Reality Leak Detected",
+            "Neurological Chaos Engine v3.14",
+            "Brainrot.exe - File Corrupted",
+            "Jonnson's Law: Entropy Always Wins"
+        ];
+        
+        // Random brainrot phrases
+        const phrases = [
+            "Your prefrontal cortex has left the chat.",
+            "Neural pathways rerouted via spaghetti junction.",
+            "Cognitive dissonance sold separately.",
+            "This site may induce existential buffer overflow.",
+            "Memory allocation failed. Please forget something.",
+            "404: Sanity not found",
+            "Your dopamine receptors called. They quit.",
+            "Brain.exe has stopped working. A problem caused the program to stop working correctly."
+        ];
+        
+        // Random meme fetcher
+        async function fetchMeme() {
+            try {
+                const response = await fetch('https://meme-api.com/gimme/brainrot');
+                const data = await response.json();
+                return data.url;
+            } catch (error) {
+                return 'https://via.placeholder.com/600x400?text=Error+Generating+Meme';
+            }
+        }
 
-            // Randomly generate additional info for the painter
-            const painterFacts = [
-                "He was known for his detailed and elegant portraits.",
-                "His works are displayed in prestigious galleries worldwide.",
-                "Johnson's style reflects a blend of Dutch and English influences."
-            ];
-            const randomPainterFact = painterFacts[Math.floor(Math.random() * painterFacts.length)];
-            painterCard.innerHTML += `<p>${randomPainterFact}</p>`;
+        // Initialization
+        async function init() {
+            // Set random title
+            document.title = titles[Math.floor(Math.random() * titles.length)];
+            
+            // Set random meme
+            const memeUrl = await fetchMeme();
+            document.getElementById('meme-image').src = memeUrl;
+            
+            // Set random brainrot text
+            const textElement = document.getElementById('brainrot-text');
+            textElement.textContent = phrases[Math.floor(Math.random() * phrases.length)];
+        }
 
-            // Randomly generate additional info for the athlete
-            const athleteFacts = [
-                "He achieved a top 1% Combine performance with an RAS score of 9.90 <button class="citation-flag" data-index="4">.",
-                "As a senior, he caught 50 passes for 826 yards and 12 touchdowns <button class="citation-flag" data-index="6">.",
-                "His career-best game included 9 receptions against Iowa <button class="citation-flag" data-index="8">."
-            ];
-            const randomAthleteFact = athleteFacts[Math.floor(Math.random() * athleteFacts.length)];
-            athleteCard.innerHTML += `<p>${randomAthleteFact}</p>`;
-        });
+        // Run initialization
+        init();
     </script>
 </body>
 </html>
