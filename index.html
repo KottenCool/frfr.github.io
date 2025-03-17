@@ -9,6 +9,7 @@
             --bg-color: #000;
             --neon-blue: #00ffff;
             --neon-pink: #ff00ff;
+            --depth-shadow: 0 0 30px rgba(0,255,0,0.5);
         }
 
         body {
@@ -17,78 +18,112 @@
             font-family: 'Courier New', monospace;
             margin: 0;
             padding: 20px;
-            animation: glitch 2s infinite;
-            transition: all 0.3s;
+            animation: backgroundPulse 8s infinite;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        body.gay-mode {
-            --primary-color: #ff00ff;
-            --bg-color: #1a1a1a;
+        /* Parallax background effect [[2]] */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                rgba(0,255,0,0.1), 
+                rgba(0,0,255,0.1) 50%, 
+                rgba(255,0,255,0.1));
+            background-size: 50% 50%;
+            animation: rotateBackground 60s linear infinite;
+            z-index: -2;
+            transform: scale(1.2);
         }
 
         h1 {
             text-align: center;
-            font-size: 3em;
+            font-size: 3.5em;
             text-transform: uppercase;
-            letter-spacing: 5px;
-            animation: flicker 1s infinite;
-            text-shadow: 0 0 20px var(--primary-color);
+            letter-spacing: 8px;
+            animation: flicker 1.5s infinite;
+            text-shadow: 0 0 30px var(--primary-color);
             position: relative;
+            padding: 20px;
         }
 
         h1::after {
-            content: "BETA 6.6.6";
+            content: "β 6.6.6";
             position: absolute;
-            right: -120px;
+            right: -150px;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 0.5em;
+            font-size: 0.6em;
             color: var(--neon-blue);
             animation: pulse 2s infinite;
+            text-shadow: 0 0 15px var(--neon-blue);
         }
 
         #welcome-section {
-            margin: 40px auto;
-            max-width: 1000px;
+            margin: 60px auto;
+            max-width: 1100px;
             text-align: center;
-            animation: text-fade 8s infinite;
+            animation: float 3s ease-in-out infinite;
             position: relative;
+            padding: 40px;
+            background: rgba(0, 255, 0, 0.05);
+            border-radius: 15px;
+            box-shadow: var(--depth-shadow);
         }
 
         #welcome-section::before {
             content: "⚠️ COGNITIVE HAZARD ⚠️";
             position: absolute;
-            top: -30px;
+            top: -40px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 1.2em;
+            font-size: 1.5em;
             animation: warning-blink 1.5s infinite;
+            text-shadow: 0 0 10px var(--neon-pink);
         }
 
         #meme-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 50px auto;
-            max-width: 1400px;
+            gap: 40px;
+            margin: 80px auto;
+            max-width: 1500px;
+            perspective: 1000px;
             position: relative;
         }
 
         .meme-item {
             border: 3px solid var(--primary-color);
-            padding: 25px;
-            box-shadow: 0 0 25px var(--primary-color);
-            transform: rotate(-3deg);
-            transition: transform 0.3s, box-shadow 0.3s;
+            padding: 30px;
+            box-shadow: 0 0 30px var(--primary-color);
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.18, 0.89, 0.32, 1.28);
             position: relative;
             overflow: hidden;
+            border-radius: 10px;
         }
 
         .meme-item:hover {
-            transform: rotate(0deg) scale(1.03);
-            box-shadow: 0 0 40px var(--primary-color);
+            transform: rotate(0deg) scale(1.05) translateZ(50px);
+            box-shadow: 0 0 50px var(--primary-color);
             z-index: 2;
+        }
+
+        .meme-item::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            border: 2px dashed var(--neon-blue);
+            opacity: 0.4;
+            animation: borderPulse 3s infinite;
         }
 
         .meme-image {
@@ -98,134 +133,122 @@
             transition: transform 0.3s;
             position: relative;
             z-index: 1;
+            border-radius: 5px;
         }
 
-        .meme-item::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            border: 2px dashed var(--neon-blue);
-            opacity: 0.3;
-            z-index: 0;
+        .meme-image:hover {
+            transform: scale(1.05) rotate(3deg);
+            box-shadow: 0 0 20px var(--neon-pink);
         }
 
         .meme-description {
-            margin-top: 20px;
-            font-size: 1.2em;
+            margin-top: 25px;
+            font-size: 1.3em;
             text-align: center;
             color: #88ff88;
             position: relative;
-            padding: 10px;
-        }
-
-        .meme-description::after {
-            content: ' ';
-            position: absolute;
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80%;
-            height: 2px;
-            background: var(--primary-color);
-            opacity: 0.5;
+            padding: 15px;
+            animation: textGlow 2s infinite;
         }
 
         #footer {
             position: fixed;
-            bottom: 10px;
+            bottom: 20px;
             width: 100%;
             text-align: center;
-            font-size: 0.9em;
-            opacity: 0.7;
+            font-size: 1em;
+            opacity: 0.8;
             transition: opacity 0.3s;
+            backdrop-filter: blur(10px);
+            padding: 10px;
         }
 
         #footer a {
             color: var(--neon-blue);
             text-decoration: underline;
-            margin-left: 10px;
+            margin-left: 15px;
+            transition: color 0.3s;
         }
 
-        @keyframes glitch {
-            0% { transform: translate(0); }
-            20% { transform: translate(-3px, 3px); }
-            40% { transform: translate(-3px, -3px); }
-            60% { transform: translate(3px, 3px); }
-            80% { transform: translate(3px, -3px); }
-            100% { transform: translate(0); }
-        }
-
-        @keyframes flicker {
-            0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
-            20%, 24%, 55% { opacity: 0; }
-        }
-
-        @keyframes text-fade {
-            0% { opacity: 1; }
-            50% { opacity: 0.2; }
-            100% { opacity: 1; }
-        }
-
-        @keyframes warning-blink {
-            50% { opacity: 0.3; }
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
-        body.gay-mode::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(270deg, 
-                rgba(255,0,255,0.15), 
-                rgba(0,255,255,0.15) 50%, 
-                rgba(255,255,0,0.15));
-            background-size: 200% 200%;
-            animation: sparkle 5s linear infinite;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .about-section {
-            max-width: 1000px;
-            margin: 50px auto;
-            padding: 20px;
-            border: 2px dashed var(--neon-blue);
-            position: relative;
-        }
-
-        .about-section h2 {
-            color: var(--neon-blue);
-            font-size: 2em;
-            text-shadow: 0 0 15px var(--neon-blue);
-        }
-
-        .about-section p {
-            line-height: 1.6;
-            margin: 15px 0;
+        #footer a:hover {
+            color: var(--neon-pink);
         }
 
         .secret-message {
             position: fixed;
-            right: 20px;
-            bottom: 60px;
-            font-size: 0.8em;
+            right: 30px;
+            bottom: 90px;
+            font-size: 0.9em;
             opacity: 0.3;
-            transition: opacity 0.3s;
+            transition: opacity 0.3s, transform 0.3s;
+            transform: rotate(-5deg);
         }
 
         .secret-message:hover {
             opacity: 1;
+            transform: rotate(0deg) scale(1.1);
+        }
+
+        /* New animations [[1]][[2]] */
+        @keyframes backgroundPulse {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes rotateBackground {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes borderPulse {
+            0% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+            100% { opacity: 0.4; }
+        }
+
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 5px var(--primary-color); }
+            50% { text-shadow: 0 0 15px var(--neon-blue); }
+            100% { text-shadow: 0 0 5px var(--primary-color); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0); }
+        }
+
+        /* Custom scrollbars [[7]] */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 10px;
+            border: 3px solid var(--bg-color);
+        }
+
+        /* Responsive design [[3]] */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            
+            #welcome-section {
+                padding: 20px;
+                margin: 30px auto;
+            }
+            
+            .meme-item {
+                padding: 20px;
+            }
         }
     </style>
 </head>
@@ -249,7 +272,7 @@
 
     <div class="about-section">
         <h2>About Dr. Cornelius Jonnson</h2>
-        <p>Brilliant mad scientist and part-time interdimensional traveler [[7]], Jonnson's work blurs the line between:</p>
+        <p>Brilliant mad scientist and part-time interdimensional traveler, Jonnson's work blurs the line between:</p>
         <div class="fact-grid">
             <div class="fact-item">Portrait painting [[2]]</div>
             <div class="fact-item">Track & field athletics [[6]]</div>
@@ -258,12 +281,18 @@
     </div>
 
     <div id="meme-grid">
-        <!-- Existing meme items -->
         <div class="meme-item">
             <img class="meme-image" src="" alt="Brainrot Meme 1">
             <div class="meme-description"></div>
         </div>
-        <!-- Additional meme items -->
+        <div class="meme-item">
+            <img class="meme-image" src="" alt="Brainrot Meme 2">
+            <div class="meme-description"></div>
+        </div>
+        <div class="meme-item">
+            <img class="meme-image" src="" alt="Brainrot Meme 3">
+            <div class="meme-description"></div>
+        </div>
         <div class="meme-item">
             <img class="meme-image" src="" alt="Brainrot Meme 4">
             <div class="meme-description"></div>
@@ -285,34 +314,17 @@
     </div>
 
     <script>
-        const GAY_MODE_CHANCE = 0.05;
-        const MEME_API_ENDPOINT = 'https://meme-api.com/gimme/wholesomememes';
+        const SOURCES = [
+            { type: 'reddit', endpoint: 'https://meme-api.com/gimme' },
+            { type: 'imgur', endpoint: 'https://api.imgur.com/3/gallery/random/random/1' },
+            { type: 'general', endpoint: 'https://source.unsplash.com/featured/?meme' }
+        ];
+        const REDDIT_SUBREDDITS = ['memes', 'dankmemes', 'wholesomememes', 'programmerhumor'];
+        const IMGUR_CLIENT_ID = 'Client-ID 12345';
         const FALLBACK_IMAGES = [
             'https://media1.tenor.com/m/4uD5JbGzVdEAAAAC/brain-rot.gif',
             'https://media.tenor.com/7YNsEtCjE7MAAAAC/brain-rot.gif',
-            'https://media.tenor.com/3oh5q4QbVdEAAAAC/brain-rot.gif',
-            'https://media.tenor.com/4sQbVdE3oh5q4QbVdEAAAAC/brain-rot.gif'
-        ];
-
-        const titles = [
-            "Cornelius Jonnson's Cerebral Circus",
-            "The Jonnson Paradox: Reality Leak Detected",
-            "Neurological Chaos Engine v3.14",
-            "Brainrot.exe - File Corrupted",
-            "Jonnson's Law: Entropy Always Wins"
-        ];
-
-        const phrases = [
-            "Your prefrontal cortex has left the chat.",
-            "Neural pathways rerouted via spaghetti junction.",
-            "Cognitive dissonance sold separately.",
-            "This site may induce existential buffer overflow.",
-            "Memory allocation failed. Please forget something.",
-            "404: Sanity not found",
-            "Your dopamine receptors called. They quit.",
-            "Brain.exe has stopped working. A problem caused the program to stop working correctly.",
-            "Semantic memory corrupted. All nouns are now verbs.",
-            "Visual cortex overload imminent. Please avert eyes."
+            'https://media.tenor.com/3oh5q4QbVdEAAAAC/brain-rot.gif'
         ];
 
         async function init() {
@@ -339,10 +351,30 @@
 
         async function fetchMeme() {
             try {
-                const response = await fetch(MEME_API_ENDPOINT);
-                const data = await response.json();
-                return data.url || FALLBACK_IMAGES[Math.floor(Math.random() * FALLBACK_IMAGES.length)];
+                const source = SOURCES[Math.floor(Math.random() * SOURCES.length)];
+                
+                switch(source.type) {
+                    case 'reddit':
+                        const subreddit = REDDIT_SUBREDDITS[Math.floor(Math.random() * REDDIT_SUBREDDITS.length)];
+                        const redditResponse = await fetch(`${source.endpoint}/${subreddit}`);
+                        const redditData = await redditResponse.json();
+                        return redditData.url || FALLBACK_IMAGES[Math.floor(Math.random() * FALLBACK_IMAGES.length)];
+                    
+                    case 'imgur':
+                        const imgurResponse = await fetch(source.endpoint, {
+                            headers: { Authorization: IMGUR_CLIENT_ID }
+                        });
+                        const imgurData = await imgurResponse.json();
+                        return imgurData.data.link || FALLBACK_IMAGES[Math.floor(Math.random() * FALLBACK_IMAGES.length)];
+                    
+                    case 'general':
+                        return source.endpoint;
+                    
+                    default:
+                        return FALLBACK_IMAGES[Math.floor(Math.random() * FALLBACK_IMAGES.length)];
+                }
             } catch (error) {
+                console.error('Fetch error:', error);
                 return FALLBACK_IMAGES[Math.floor(Math.random() * FALLBACK_IMAGES.length)];
             }
         }
@@ -352,7 +384,7 @@
             return false;
         }
 
-        // Add dynamic background effects
+        // Particle effects [[9]]
         document.addEventListener('mousemove', (e) => {
             const particles = document.createElement('div');
             particles.className = 'particle';
