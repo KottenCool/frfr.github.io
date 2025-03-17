@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <title>Cornelius Jonnson's Reality Distortion Field</title>
     <style>
-        /* Main Styles */
         :root {
             --primary-color: #00ff00;
             --bg-color: #000;
+            --neon-blue: #00ffff;
+            --neon-pink: #ff00ff;
         }
 
         body {
@@ -18,23 +19,14 @@
             padding: 20px;
             animation: glitch 2s infinite;
             transition: all 0.3s;
+            min-height: 100vh;
         }
 
-        /* Gay Mode Styles */
         body.gay-mode {
             --primary-color: #ff00ff;
             --bg-color: #1a1a1a;
         }
 
-        body.gay-mode #meme-container {
-            border-image: linear-gradient(45deg, #ff00ff, #00ffff) 1;
-        }
-
-        body.gay-mode #brainrot-text {
-            text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff;
-        }
-
-        /* UI Enhancements */
         h1 {
             text-align: center;
             font-size: 3em;
@@ -42,52 +34,103 @@
             letter-spacing: 5px;
             animation: flicker 1s infinite;
             text-shadow: 0 0 20px var(--primary-color);
+            position: relative;
+        }
+
+        h1::after {
+            content: "BETA 6.6.6";
+            position: absolute;
+            right: -120px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.5em;
+            color: var(--neon-blue);
+            animation: pulse 2s infinite;
         }
 
         #welcome-section {
-            margin: 20px auto;
-            max-width: 800px;
+            margin: 40px auto;
+            max-width: 1000px;
             text-align: center;
-            animation: text-fade 5s infinite;
+            animation: text-fade 8s infinite;
+            position: relative;
+        }
+
+        #welcome-section::before {
+            content: "⚠️ COGNITIVE HAZARD ⚠️";
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.2em;
+            animation: warning-blink 1.5s infinite;
         }
 
         #meme-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            gap: 30px;
             margin: 50px auto;
-            max-width: 1200px;
+            max-width: 1400px;
+            position: relative;
         }
 
         .meme-item {
-            border: 2px solid var(--primary-color);
-            padding: 20px;
-            box-shadow: 0 0 20px var(--primary-color);
-            transform: rotate(-2deg);
+            border: 3px solid var(--primary-color);
+            padding: 25px;
+            box-shadow: 0 0 25px var(--primary-color);
+            transform: rotate(-3deg);
             transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
         }
 
         .meme-item:hover {
-            transform: rotate(0deg) scale(1.02);
-            box-shadow: 0 0 30px var(--primary-color);
+            transform: rotate(0deg) scale(1.03);
+            box-shadow: 0 0 40px var(--primary-color);
+            z-index: 2;
         }
 
         .meme-image {
             width: 100%;
             height: auto;
-            border: 1px solid var(--primary-color);
+            border: 2px solid var(--primary-color);
             transition: transform 0.3s;
+            position: relative;
+            z-index: 1;
         }
 
-        .meme-image:hover {
-            transform: rotate(5deg) scale(1.05);
+        .meme-item::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px dashed var(--neon-blue);
+            opacity: 0.3;
+            z-index: 0;
         }
 
         .meme-description {
-            margin-top: 15px;
-            font-size: 1.1em;
+            margin-top: 20px;
+            font-size: 1.2em;
             text-align: center;
             color: #88ff88;
+            position: relative;
+            padding: 10px;
+        }
+
+        .meme-description::after {
+            content: ' ';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 2px;
+            background: var(--primary-color);
+            opacity: 0.5;
         }
 
         #footer {
@@ -96,21 +139,22 @@
             width: 100%;
             text-align: center;
             font-size: 0.9em;
-            opacity: 0.5;
+            opacity: 0.7;
             transition: opacity 0.3s;
         }
 
-        #footer:hover {
-            opacity: 1;
+        #footer a {
+            color: var(--neon-blue);
+            text-decoration: underline;
+            margin-left: 10px;
         }
 
-        /* Animations */
         @keyframes glitch {
             0% { transform: translate(0); }
-            20% { transform: translate(-2px, 2px); }
-            40% { transform: translate(-2px, -2px); }
-            60% { transform: translate(2px, 2px); }
-            80% { transform: translate(2px, -2px); }
+            20% { transform: translate(-3px, 3px); }
+            40% { transform: translate(-3px, -3px); }
+            60% { transform: translate(3px, 3px); }
+            80% { transform: translate(3px, -3px); }
             100% { transform: translate(0); }
         }
 
@@ -121,15 +165,18 @@
 
         @keyframes text-fade {
             0% { opacity: 1; }
-            50% { opacity: 0.3; }
+            50% { opacity: 0.2; }
             100% { opacity: 1; }
         }
 
-        /* Gay Mode Sparkles */
-        @keyframes sparkle {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        @keyframes warning-blink {
+            50% { opacity: 0.3; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
 
         body.gay-mode::before {
@@ -140,13 +187,45 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(270deg, 
-                rgba(255,0,255,0.1), 
-                rgba(0,255,255,0.1) 50%, 
-                rgba(255,255,0,0.1));
+                rgba(255,0,255,0.15), 
+                rgba(0,255,255,0.15) 50%, 
+                rgba(255,255,0,0.15));
             background-size: 200% 200%;
             animation: sparkle 5s linear infinite;
             pointer-events: none;
             z-index: -1;
+        }
+
+        .about-section {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 2px dashed var(--neon-blue);
+            position: relative;
+        }
+
+        .about-section h2 {
+            color: var(--neon-blue);
+            font-size: 2em;
+            text-shadow: 0 0 15px var(--neon-blue);
+        }
+
+        .about-section p {
+            line-height: 1.6;
+            margin: 15px 0;
+        }
+
+        .secret-message {
+            position: fixed;
+            right: 20px;
+            bottom: 60px;
+            font-size: 0.8em;
+            opacity: 0.3;
+            transition: opacity 0.3s;
+        }
+
+        .secret-message:hover {
+            opacity: 1;
         }
     </style>
 </head>
@@ -157,40 +236,64 @@
         <p>Welcome to the digital manifestation of neural chaos. This site serves as a gateway to the 
         fourth dimension where memes transcend physical form and reality becomes a subjective 
         construct. Proceed with caution - your cognitive warranty is now void.</p>
+        
+        <div class="system-warning">
+            <p>⚠️ WARNING: Prolonged exposure may cause:</p>
+            <ul>
+                <li>Spontaneous quantum decoherence</li>
+                <li>Uncontrolled reality warping</li>
+                <li>Temporary loss of object permanence</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="about-section">
+        <h2>About Dr. Cornelius Jonnson</h2>
+        <p>Brilliant mad scientist and part-time interdimensional traveler [[7]], Jonnson's work blurs the line between:</p>
+        <div class="fact-grid">
+            <div class="fact-item">Portrait painting [[2]]</div>
+            <div class="fact-item">Track & field athletics [[6]]</div>
+            <div class="fact-item">Reality distortion [[1]]</div>
+        </div>
     </div>
 
     <div id="meme-grid">
+        <!-- Existing meme items -->
         <div class="meme-item">
             <img class="meme-image" src="" alt="Brainrot Meme 1">
             <div class="meme-description"></div>
         </div>
+        <!-- Additional meme items -->
         <div class="meme-item">
-            <img class="meme-image" src="" alt="Brainrot Meme 2">
+            <img class="meme-image" src="" alt="Brainrot Meme 4">
             <div class="meme-description"></div>
         </div>
         <div class="meme-item">
-            <img class="meme-image" src="" alt="Brainrot Meme 3">
+            <img class="meme-image" src="" alt="Brainrot Meme 5">
+            <div class="meme-description"></div>
+        </div>
+        <div class="meme-item">
+            <img class="meme-image" src="" alt="Brainrot Meme 6">
             <div class="meme-description"></div>
         </div>
     </div>
 
     <div id="footer">
         &copy; 2025 Cornelius Jonnson's Existential Emporium | 
-        Warning: May induce temporal lobe anomalies | 
         <a href="#" onclick="toggleGayMode()">Activate Quantum Flux</a>
+        <div class="secret-message">Psst... reality is a social construct</div>
     </div>
 
     <script>
-        // Configuration
-        const GAY_MODE_CHANCE = 0.01;
+        const GAY_MODE_CHANCE = 0.05;
         const MEME_API_ENDPOINT = 'https://meme-api.com/gimme/wholesomememes';
         const FALLBACK_IMAGES = [
             'https://media1.tenor.com/m/4uD5JbGzVdEAAAAC/brain-rot.gif',
-            'https://media1.tenor.com/m/4uD5JbGzVdEAAAAC/brain-rot.gif',
-            'https://media.tenor.com/7YNsEtCjE7MAAAAC/brain-rot.gif'
+            'https://media.tenor.com/7YNsEtCjE7MAAAAC/brain-rot.gif',
+            'https://media.tenor.com/3oh5q4QbVdEAAAAC/brain-rot.gif',
+            'https://media.tenor.com/4sQbVdE3oh5q4QbVdEAAAAC/brain-rot.gif'
         ];
 
-        // Data
         const titles = [
             "Cornelius Jonnson's Cerebral Circus",
             "The Jonnson Paradox: Reality Leak Detected",
@@ -207,20 +310,18 @@
             "Memory allocation failed. Please forget something.",
             "404: Sanity not found",
             "Your dopamine receptors called. They quit.",
-            "Brain.exe has stopped working. A problem caused the program to stop working correctly."
+            "Brain.exe has stopped working. A problem caused the program to stop working correctly.",
+            "Semantic memory corrupted. All nouns are now verbs.",
+            "Visual cortex overload imminent. Please avert eyes."
         ];
 
-        // Initialization
         async function init() {
-            // Set random title
             document.title = titles[Math.floor(Math.random() * titles.length)];
             
-            // Check for gay mode
             if(Math.random() < GAY_MODE_CHANCE) {
                 document.body.classList.add('gay-mode');
             }
 
-            // Load memes
             const memeContainers = document.querySelectorAll('.meme-item');
             memeContainers.forEach(async (container) => {
                 const memeUrl = await fetchMeme();
@@ -229,10 +330,13 @@
                 
                 imgElement.src = memeUrl;
                 descElement.textContent = phrases[Math.floor(Math.random() * phrases.length)];
+                
+                // Add random rotation angles
+                const rotation = Math.random() * 6 - 3;
+                container.style.transform += ` rotate(${rotation}deg)`;
             });
         }
 
-        // Meme Fetcher
         async function fetchMeme() {
             try {
                 const response = await fetch(MEME_API_ENDPOINT);
@@ -243,13 +347,22 @@
             }
         }
 
-        // Gay Mode Toggle
         function toggleGayMode() {
             document.body.classList.toggle('gay-mode');
             return false;
         }
 
-        // Run initialization
+        // Add dynamic background effects
+        document.addEventListener('mousemove', (e) => {
+            const particles = document.createElement('div');
+            particles.className = 'particle';
+            particles.style.left = `${e.clientX}px`;
+            particles.style.top = `${e.clientY}px`;
+            particles.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            document.body.appendChild(particles);
+            setTimeout(() => particles.remove(), 1000);
+        });
+
         init();
     </script>
 </body>
