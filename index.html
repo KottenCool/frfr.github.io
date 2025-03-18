@@ -52,349 +52,84 @@
             padding: 20px;
         }
 
-        h1::after {
-            content: "β 6.6.6";
-            position: absolute;
-            right: -150px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 0.6em;
-            color: var(--neon-blue);
-            animation: pulse 2s infinite;
-            text-shadow: 0 0 15px var(--neon-blue);
-        }
-
-        #welcome-section {
-            margin: 60px auto;
-            max-width: 1100px;
-            text-align: center;
-            animation: float 3s ease-in-out infinite;
-            position: relative;
-            padding: 40px;
-            background: rgba(0, 255, 0, 0.05);
-            border-radius: 15px;
-            box-shadow: var(--depth-shadow);
-        }
-
-        #welcome-section::before {
-            content: "⚠️ COGNITIVE HAZARD ⚠️";
-            position: absolute;
-            top: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 1.5em;
-            animation: warning-blink 1.5s infinite;
-            text-shadow: 0 0 10px var(--neon-pink);
-        }
-
         #meme-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
             margin: 80px auto;
             max-width: 1500px;
-            perspective: 1000px;
-            position: relative;
         }
 
         .meme-item {
             border: 3px solid var(--primary-color);
             padding: 30px;
             box-shadow: 0 0 30px var(--primary-color);
-            transform-style: preserve-3d;
-            transition: transform 0.6s cubic-bezier(0.18, 0.89, 0.32, 1.28);
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-        }
-
-        .meme-item:hover {
-            transform: rotate(0deg) scale(1.05) translateZ(50px);
-            box-shadow: 0 0 50px var(--primary-color);
-            z-index: 2;
-        }
-
-        .meme-item::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: -20px;
-            right: -20px;
-            bottom: -20px;
-            border: 2px dashed var(--neon-blue);
-            opacity: 0.4;
-            animation: borderPulse 3s infinite;
+            transition: transform 0.3s;
         }
 
         .meme-image {
             width: 100%;
             height: auto;
             border: 2px solid var(--primary-color);
-            transition: transform 0.3s;
-            position: relative;
-            z-index: 1;
-            border-radius: 5px;
         }
 
-        .meme-image:hover {
-            transform: scale(1.05) rotate(3deg);
-            box-shadow: 0 0 20px var(--neon-pink);
-        }
-
-        .meme-description {
-            margin-top: 25px;
-            font-size: 1.3em;
-            text-align: center;
-            color: #88ff88;
-            position: relative;
-            padding: 15px;
-            animation: textGlow 2s infinite;
-        }
-
-        #footer {
-            position: fixed;
-            bottom: 20px;
-            width: 100%;
-            text-align: center;
-            font-size: 1em;
-            opacity: 0.8;
-            transition: opacity 0.3s;
-            backdrop-filter: blur(10px);
-            padding: 10px;
-        }
-
-        #footer a {
-            color: var(--neon-blue);
-            text-decoration: underline;
-            margin-left: 15px;
-            transition: color 0.3s;
-        }
-
-        #footer a:hover {
-            color: var(--neon-pink);
-        }
-
-        .secret-message {
-            position: fixed;
-            right: 30px;
-            bottom: 90px;
-            font-size: 0.9em;
-            opacity: 0.3;
-            transition: opacity 0.3s, transform 0.3s;
-            transform: rotate(-5deg);
-        }
-
-        .secret-message:hover {
-            opacity: 1;
-            transform: rotate(0deg) scale(1.1);
-        }
-
-        /* New animations [[1]][[2]] */
-        @keyframes backgroundPulse {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        @keyframes rotateBackground {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes borderPulse {
-            0% { opacity: 0.4; }
-            50% { opacity: 0.8; }
-            100% { opacity: 0.4; }
-        }
-
-        @keyframes textGlow {
-            0% { text-shadow: 0 0 5px var(--primary-color); }
-            50% { text-shadow: 0 0 15px var(--neon-blue); }
-            100% { text-shadow: 0 0 5px var(--primary-color); }
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0); }
-        }
-
-        /* Custom scrollbars [[7]] */
-        ::-webkit-scrollbar {
-            width: 12px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg-color);
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary-color);
-            border-radius: 10px;
-            border: 3px solid var(--bg-color);
-        }
-
-        /* Responsive design [[3]] */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5em;
-            }
-            
-            #welcome-section {
-                padding: 20px;
-                margin: 30px auto;
-            }
-            
-            .meme-item {
-                padding: 20px;
-            }
+        @keyframes flicker {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+            20%, 24%, 55% { opacity: 0; }
         }
     </style>
 </head>
 <body>
     <h1>Cornelius Jonnson's <br>Reality Distortion Field</h1>
-    
-    <div id="welcome-section">
-        <p>Welcome to the digital manifestation of neural chaos. This site serves as a gateway to the 
-        fourth dimension where memes transcend physical form and reality becomes a subjective 
-        construct. Proceed with caution - your cognitive warranty is now void.</p>
-        
-        <div class="system-warning">
-            <p>⚠️ WARNING: Prolonged exposure may cause:</p>
-            <ul>
-                <li>Spontaneous quantum decoherence</li>
-                <li>Uncontrolled reality warping</li>
-                <li>Temporary loss of object permanence</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="about-section">
-        <h2>About Dr. Cornelius Jonnson</h2>
-        <p>Brilliant mad scientist and part-time interdimensional traveler, Jonnson's work blurs the line between:</p>
-        <div class="fact-grid">
-            <div class="fact-item">Portrait painting [[2]]</div>
-            <div class="fact-item">Track & field athletics [[6]]</div>
-            <div class="fact-item">Reality distortion [[1]]</div>
-        </div>
-    </div>
 
     <div id="meme-grid">
         <div class="meme-item">
-            <img class="meme-image" src="" alt="Brainrot Meme 1">
-            <div class="meme-description"></div>
+            <img class="meme-image" src="" alt="Meme 1">
         </div>
         <div class="meme-item">
-            <img class="meme-image" src="" alt="Brainrot Meme 2">
-            <div class="meme-description"></div>
+            <img class="meme-image" src="" alt="Meme 2">
         </div>
         <div class="meme-item">
-            <img class="meme-image" src="" alt="Brainrot Meme 3">
-            <div class="meme-description"></div>
+            <img class="meme-image" src="" alt="Meme 3">
         </div>
         <div class="meme-item">
-            <img class="meme-image" src="" alt="Brainrot Meme 4">
-            <div class="meme-description"></div>
+            <img class="meme-image" src="" alt="Meme 4">
         </div>
-        <div class="meme-item">
-            <img class="meme-image" src="" alt="Brainrot Meme 5">
-            <div class="meme-description"></div>
-        </div>
-        <div class="meme-item">
-            <img class="meme-image" src="" alt="Brainrot Meme 6">
-            <div class="meme-description"></div>
-        </div>
-    </div>
-
-    <div id="footer">
-        &copy; 2025 Cornelius Jonnson's Existential Emporium | 
-        <a href="#" onclick="toggleGayMode()">Activate Quantum Flux</a>
-        <div class="secret-message">Psst... reality is a social construct</div>
     </div>
 
     <script>
-        const SOURCES = [
-            { type: 'reddit', endpoint: 'https://meme-api.com/gimme' },
-            { type: 'imgur', endpoint: 'https://api.imgur.com/3/gallery/random/random/1' },
-            { type: 'general', endpoint: 'https://source.unsplash.com/featured/?meme' }
-        ];
-        const REDDIT_SUBREDDITS = ['memes', 'dankmemes', 'wholesomememes', 'programmerhumor'];
-        const IMGUR_CLIENT_ID = 'Client-ID 12345';
+        // Fallback images in case APIs fail [[7]]
         const FALLBACK_IMAGES = [
-            'https://media1.tenor.com/m/4uD5JbGzVdEAAAAC/brain-rot.gif',
-            'https://media.tenor.com/7YNsEtCjE7MAAAAC/brain-rot.gif',
-            'https://media.tenor.com/3oh5q4QbVdEAAAAC/brain-rot.gif'
+            "https://i.imgur.com/69Z1LJm.jpg",
+            "https://i.imgur.com/8YrT5zQ.jpg",
+            "https://i.imgur.com/7vXjRqK.jpg",
+            "https://i.imgur.com/3oJHf5t.jpg"
         ];
 
-        async function init() {
-            document.title = titles[Math.floor(Math.random() * titles.length)];
-            
-            if(Math.random() < GAY_MODE_CHANCE) {
-                document.body.classList.add('gay-mode');
-            }
-
-            const memeContainers = document.querySelectorAll('.meme-item');
-            memeContainers.forEach(async (container) => {
-                const memeUrl = await fetchMeme();
-                const imgElement = container.querySelector('.meme-image');
-                const descElement = container.querySelector('.meme-description');
-                
-                imgElement.src = memeUrl;
-                descElement.textContent = phrases[Math.floor(Math.random() * phrases.length)];
-                
-                // Add random rotation angles
-                const rotation = Math.random() * 6 - 3;
-                container.style.transform += ` rotate(${rotation}deg)`;
-            });
-        }
-
+        // Function to fetch memes from Reddit using JSONP [[8]]
         async function fetchMeme() {
             try {
-                const source = SOURCES[Math.floor(Math.random() * SOURCES.length)];
-                
-                switch(source.type) {
-                    case 'reddit':
-                        const subreddit = REDDIT_SUBREDDITS[Math.floor(Math.random() * REDDIT_SUBREDDITS.length)];
-                        const redditResponse = await fetch(`${source.endpoint}/${subreddit}`);
-                        const redditData = await redditResponse.json();
-                        return redditData.url || FALLBACK_IMAGES[Math.floor(Math.random() * FALLBACK_IMAGES.length)];
-                    
-                    case 'imgur':
-                        const imgurResponse = await fetch(source.endpoint, {
-                            headers: { Authorization: IMGUR_CLIENT_ID }
-                        });
-                        const imgurData = await imgurResponse.json();
-                        return imgurData.data.link || FALLBACK_IMAGES[Math.floor(Math.random() * FALLBACK_IMAGES.length)];
-                    
-                    case 'general':
-                        return source.endpoint;
-                    
-                    default:
-                        return FALLBACK_IMAGES[Math.floor(Math.random() * FALLBACK_IMAGES.length)];
-                }
+                const response = await fetch("https://www.reddit.com/r/memes/random/.json");
+                const [data] = await response.json();
+                const memeUrl = data.data.children[0].data.url;
+                return memeUrl;
             } catch (error) {
-                console.error('Fetch error:', error);
+                console.error("Error fetching meme:", error);
                 return FALLBACK_IMAGES[Math.floor(Math.random() * FALLBACK_IMAGES.length)];
             }
         }
 
-        function toggleGayMode() {
-            document.body.classList.toggle('gay-mode');
-            return false;
+        // Function to initialize memes on page load
+        async function init() {
+            const memeContainers = document.querySelectorAll(".meme-item img");
+
+            for (const img of memeContainers) {
+                const memeUrl = await fetchMeme();
+                img.src = memeUrl;
+            }
         }
 
-        // Particle effects [[9]]
-        document.addEventListener('mousemove', (e) => {
-            const particles = document.createElement('div');
-            particles.className = 'particle';
-            particles.style.left = `${e.clientX}px`;
-            particles.style.top = `${e.clientY}px`;
-            particles.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
-            document.body.appendChild(particles);
-            setTimeout(() => particles.remove(), 1000);
-        });
-
+        // Run initialization on page load
         init();
     </script>
 </body>
