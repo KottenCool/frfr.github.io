@@ -1,136 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Cornelius Jonnson's Reality Distortion Field</title>
-    <style>
-        :root {
-            --primary-color: #00ff00;
-            --bg-color: #000;
-            --neon-blue: #00ffff;
-            --neon-pink: #ff00ff;
-            --depth-shadow: 0 0 30px rgba(0,255,0,0.5);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rakai's AI-Powered Random Story</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            background: var(--bg-color);
-            color: var(--primary-color);
-            font-family: 'Courier New', monospace;
-            margin: 0;
-            padding: 20px;
-            animation: backgroundPulse 8s infinite;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
+    /* Body Styling */
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow-x: hidden;
+    }
 
-        /* Parallax background effect [[2]] */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, 
-                rgba(0,255,0,0.1), 
-                rgba(0,0,255,0.1) 50%, 
-                rgba(255,0,255,0.1));
-            background-size: 50% 50%;
-            animation: rotateBackground 60s linear infinite;
-            z-index: -2;
-            transform: scale(1.2);
-        }
+    /* Container Styling */
+    .container {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 600px;
+      padding: 2rem;
+      text-align: center;
+      overflow: hidden;
+    }
 
-        h1 {
-            text-align: center;
-            font-size: 3.5em;
-            text-transform: uppercase;
-            letter-spacing: 8px;
-            animation: flicker 1.5s infinite;
-            text-shadow: 0 0 30px var(--primary-color);
-            position: relative;
-            padding: 20px;
-        }
+    /* Heading Styling */
+    h1 {
+      font-size: 2.5rem;
+      color: #ff6f61;
+      margin-bottom: 1rem;
+    }
 
-        #meme-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin: 80px auto;
-            max-width: 1500px;
-        }
+    /* Paragraph Styling */
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
 
-        .meme-item {
-            border: 3px solid var(--primary-color);
-            padding: 30px;
-            box-shadow: 0 0 30px var(--primary-color);
-            transition: transform 0.3s;
-        }
+    /* Button Styling */
+    button {
+      background: #ff6f61;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
 
-        .meme-image {
-            width: 100%;
-            height: auto;
-            border: 2px solid var(--primary-color);
-        }
+    button:hover {
+      background: #ff4d4d;
+    }
 
-        @keyframes flicker {
-            0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
-            20%, 24%, 55% { opacity: 0; }
-        }
-    </style>
+    /* Loading Spinner */
+    .loading {
+      font-size: 1.2rem;
+      color: #ff6f61;
+      margin-top: 1rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>Cornelius Jonnson's <br>Reality Distortion Field</h1>
+  <div class="container">
+    <h1>Rakai's AI-Powered Random Story</h1>
+    <p id="story">Loading Rakai's story...</p>
+    <button onclick="generateStory()">Refresh Story</button>
+    <div id="loading" class="loading"></div>
+  </div>
 
-    <div id="meme-grid">
-        <div class="meme-item">
-            <img class="meme-image" src="" alt="Meme 1">
-        </div>
-        <div class="meme-item">
-            <img class="meme-image" src="" alt="Meme 2">
-        </div>
-        <div class="meme-item">
-            <img class="meme-image" src="" alt="Meme 3">
-        </div>
-        <div class="meme-item">
-            <img class="meme-image" src="" alt="Meme 4">
-        </div>
-    </div>
+  <script>
+    // Replace this with your actual OpenAI API key
+    const OPENAI_API_KEY = "YOUR_OPENAI_API_KEY";
 
-    <script>
-        // Fallback images in case APIs fail [[7]]
-        const FALLBACK_IMAGES = [
-            "https://i.imgur.com/69Z1LJm.jpg",
-            "https://i.imgur.com/8YrT5zQ.jpg",
-            "https://i.imgur.com/7vXjRqK.jpg",
-            "https://i.imgur.com/3oJHf5t.jpg"
-        ];
+    // Function to generate a story using OpenAI's API
+    async function generateStory() {
+      const storyElement = document.getElementById("story");
+      const loadingElement = document.getElementById("loading");
 
-        // Function to fetch memes from Reddit using JSONP [[8]]
-        async function fetchMeme() {
-            try {
-                const response = await fetch("https://www.reddit.com/r/memes/random/.json");
-                const [data] = await response.json();
-                const memeUrl = data.data.children[0].data.url;
-                return memeUrl;
-            } catch (error) {
-                console.error("Error fetching meme:", error);
-                return FALLBACK_IMAGES[Math.floor(Math.random() * FALLBACK_IMAGES.length)];
-            }
-        }
+      // Show loading message
+      storyElement.textContent = "";
+      loadingElement.textContent = "Generating story...";
 
-        // Function to initialize memes on page load
-        async function init() {
-            const memeContainers = document.querySelectorAll(".meme-item img");
+      try {
+        // Define the prompt for the AI
+        const prompt = `
+          Write a short, fun, and creative story about a boy named Rakai who loves memes, anime, and internet culture. 
+          Include details about his quirky personality, his favorite activities like creating Skibidi memes or drinking Grimace Shakes, 
+          and where he spends most of his time. Keep it lighthearted and no longer than 3 sentences.
+        `;
 
-            for (const img of memeContainers) {
-                const memeUrl = await fetchMeme();
-                img.src = memeUrl;
-            }
-        }
+        // Call the OpenAI API
+        const response = await fetch("https://api.openai.com/v1/completions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${OPENAI_API_KEY}`,
+          },
+          body: JSON.stringify({
+            model: "text-davinci-003", // Use the desired model
+            prompt: prompt,
+            max_tokens: 100, // Limit the response length
+            temperature: 0.7, // Control creativity (higher = more creative)
+          }),
+        });
 
-        // Run initialization on page load
-        init();
-    </script>
+        // Parse the response
+        const data = await response.json();
+        const aiGeneratedStory = data.choices[0].text.trim();
+
+        // Display the generated story
+        storyElement.textContent = aiGeneratedStory;
+        loadingElement.textContent = ""; // Clear loading message
+      } catch (error) {
+        console.error("Error generating story:", error);
+        storyElement.textContent = "Oops! Something went wrong. Please try again.";
+        loadingElement.textContent = ""; // Clear loading message
+      }
+    }
+
+    // Generate story on page load
+    window.onload = generateStory;
+  </script>
 </body>
 </html>
