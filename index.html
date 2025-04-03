@@ -3,94 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cornelius Skibidi Brainrot HQ</title>
+    <title>LABS - A New Dimension of Fear</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background: #000;
-            color: #fff;
+        :root {
+            --primary: #00F7FF;
+            --secondary: #00FF88;
+            --dark: #0A0A0A;
+            --light: #1A1A1A;
+        }
+
+        * {
             margin: 0;
-            padding: 20px;
-            overflow-x: hidden;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
 
-        .glitch {
-            animation: glitch 1s infinite;
+        body {
+            background: var(--dark);
+            color: white;
+            line-height: 1.6;
         }
 
-        @keyframes glitch {
-            0% { transform: translate(0); }
-            20% { transform: translate(-2px, 2px); }
-            40% { transform: translate(-2px, -2px); }
-            60% { transform: translate(2px, 2px); }
-            80% { transform: translate(2px, -2px); }
-            100% { transform: translate(0); }
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 2rem;
+            text-align: center;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .hero {
+            background: linear-gradient(to bottom, var(--light), var(--dark));
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            color: white;
+            text-transform: uppercase;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+        }
+
+        .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            gap: 2rem;
+            padding: 4rem 2rem;
         }
 
-        .meme-card {
-            background: #1a1a1a;
-            border: 2px solid #ff00ff;
-            border-radius: 10px;
-            padding: 20px;
-            transition: transform 0.3s;
-        }
-
-        .meme-card:hover {
-            transform: scale(1.05);
-        }
-
-        .meme-card img {
-            max-width: 100%;
-            border-radius: 5px;
-        }
-
-        h1 {
-            color: #ff00ff;
+        .feature-card {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 15px;
             text-align: center;
-            margin-bottom: 40px;
-            font-size: 3em;
+            transition: transform 0.2s;
         }
 
-        .footer {
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background: var(--dark);
+            padding: 2rem;
             text-align: center;
-            margin-top: 40px;
-            color: #888;
+            border-top: 1px solid #333;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
         }
     </style>
 </head>
 <body>
-    <h1 class="glitch">Cornelius Skibidi Brainrot HQ</h1>
-    
-    <div class="container">
-        <div class="meme-card">
-            <img src="https://i.imgur.com/6QbX6yA.png" alt="Skibidi Toilet Man">
-            <h2>Skibidi Toilet Origins [[1]]</h2>
-            <p>The viral phenomenon that started it all - where bathroom fixtures come alive with [[3]] neon colors and [[2]] Ohio references. Featured in 66.8M TikTok videos [[3]].</p>
-        </div>
+    <header>
+        <h1>LABS</h1>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#features">Features</a>
+            <a href="#newsletter">Newsletter</a>
+        </nav>
+    </header>
 
-        <div class="meme-card">
-            <img src="https://i.imgur.com/3JZq0tG.jpg" alt="Kai Cenat Head">
-            <h2>Gyatt Chaser Chronicles</h2>
-            <p>Cornelius's quest to capture the perfect [[4]] "gyatt" (good) chaser meme, blending [[5]] brainrot obsession with viral formats. Often spotted with Kai Cenat's iconic head [[6]].</p>
-        </div>
+    <section class="hero">
+        <h1>ENTER THE ANOMALY</h1>
+        <p>A procedurally generated nightmare blending quantum physics and horror. Inspired by classic room escape mechanics but reimagined with cutting-edge generation technology [[3]]</p>
+        <button class="cta-button">COMING SOON TO ROBLOX</button>
+    </section>
 
-        <div class="meme-card">
-            <img src="https://i.imgur.com/RkYdX7m.png" alt="Skibidi Camera Man">
-            <h2>Skibidi Cinematography</h2>
-            <p>Documenting meme culture through the lens of a [[2]] Skibidi camera man. Combines [[5]] brainrot aesthetics with [[4]] sigma rizzler energy.</p>
+    <section class="features" id="features">
+        <div class="feature-card">
+            <h3>Dynamic Generation</h3>
+            <p>Experience ever-changing layouts using our proprietary room generation system [[3]], creating unique escape challenges every playthrough</p>
         </div>
-    </div>
+        <div class="feature-card">
+            <h3>Immersive Environments</h3>
+            <p>Portal-based progression system with energy-infused environments inspired by quantum labs [[2]]</p>
+        </div>
+        <div class="feature-card">
+            <h3>Survival Mechanics</h3>
+            <p>Advanced AI-driven entities and interactive hiding spots with dynamic soundscapes [[5]]</p>
+        </div>
+    </section>
 
-    <div class="footer">
-        <p>Made with 💀 by Cornelius Skibidi Man [[5]][[6]]</p>
-    </div>
+    <section class="newsletter" id="newsletter">
+        <div class="container">
+            <h2>JOIN THE EXPERIMENT</h2>
+            <p>Get early access and development updates</p>
+            <form>
+                <input type="email" placeholder="Your Roblox username" required>
+                <button type="submit" class="cta-button">SIGN UP</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 LABS Interactive. Not affiliated with Roblox Corporation [[4]]</p>
+        <div class="social-icons">
+            <a href="#"><img src="roblox-icon.png" alt="Roblox"></a>
+            <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
+            <a href="#"><img src="discord-icon.png" alt="Discord"></a>
+        </div>
+    </footer>
 </body>
 </html>
