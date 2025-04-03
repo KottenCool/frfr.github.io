@@ -1,108 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cornelius Johnson's Insane Chronicles</title>
-  <style>
-    body {
-      font-family: 'Comic Sans MS', cursive;
-      background: linear-gradient(45deg, #ff00cc, #3333ff);
-      color: white;
-      text-align: center;
-      padding: 20px;
-      min-height: 100vh;
-      animation: pulse 2s infinite;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rakai's Meme Universe</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            min-height: 100vh;
+        }
 
-    h1 {
-      font-size: 3em;
-      text-shadow: 2px 2px 0px #000;
-    }
+        #story-box {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            min-height: 150px;
+        }
 
-    #story {
-      font-size: 1.5em;
-      margin: 20px;
-      line-height: 1.5;
-      background: rgba(0,0,0,0.3);
-      padding: 20px;
-      border-radius: 15px;
-    }
+        button {
+            background: #45b7d1;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
 
-    button {
-      background: #ff00cc;
-      border: none;
-      padding: 15px 30px;
-      font-size: 1.2em;
-      cursor: pointer;
-      animation: bounce 1s infinite;
-    }
-
-    @keyframes pulse {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-      40% { transform: translateY(-20px); }
-      60% { transform: translateY(-10px); }
-    }
-  </style>
+        button:hover {
+            transform: scale(1.05);
+        }
+    </style>
 </head>
 <body>
-  <h1>CORNELIUS JOHNSON'S INSANE CHRONICLES</h1>
-  <div id="story">Generating madness...</div>
-  <button onclick="generateStory()">MORE CHAOS!</button>
+    <h1>Rakai's Chaotic Story Generator</h1>
+    <div id="story-box">Loading meme magic...</div>
+    <button onclick="generateStory()">Generate Chaos</button>
 
-  <script>
-    const data = {
-      traits: [
-        "media mogul with a TikTok empire [[1]]", 
-        "eternal student at Chaffey College [[2]]",
-        "17th century Flemish portrait painter [[5]]",
-        "football star tight end [[6]]",
-        "asylum resident from 1883 [[8]]"
-      ],
-      actions: [
-        "creating Skibidi memes about basset hounds [[3]]",
-        "arguing with historical figures in Discord [[2]]",
-        "painting portraits of meme lords [[5]]",
-        "doing the Grimace Shake at Renaissance fairs [[6]]",
-        "writing manifestos about office-seeking [[7]]"
-      ],
-      locations: [
-        "a neon-lit Discord server [[2]]",
-        "1600s London art studio [[5]]",
-        "Michigan football stadium [[6]]",
-        "a surreal LinkedIn profile [[1]]",
-        "Esperanza's magical TikTok dimension [[3]]"
-      ],
-      quirks: [
-        "speaks in Shakespearean emojis 🎭📱 [[7]]",
-        "wears a Grimace costume to board meetings [[6]]",
-        "has a pet basset hound named Gideon [[3]]",
-        "runs marathons while reciting Paul Laurence Dunbar [[7]]",
-        "collects 17th century LinkedIn endorsements [[5]]"
-      ]
-    };
+    <script>
+        // Data from knowledge base [[1]][[2]][[3]][[4]][[6]][[7]][[8]]
+        const storyElements = {
+            subjects: [
+                "Skibidi warrior",
+                "Grimace Shake mixologist",
+                "Meme archaeologist",
+                "TikTok time traveler",
+                "Anime dimension hopper"
+            ],
+            actions: [
+                "recreating 17th century portraits with emoji [[5]]",
+                "arguing with AI about work ethic [[1]]",
+                "optimizing workflows with basset hounds [[3]]",
+                "building LinkedIn empires from Discord chaos [[2]]",
+                "turning grunt work into performance art [[4]]"
+            ],
+            locations: [
+                "a neon-soaked metaverse",
+                "Chaffey College's meme archives [[2]]",
+                "Esperanza's quantum TikTok realm [[3]]",
+                "a Renaissance fair in cyberspace [[5]]",
+                "the Michigan Stadium of memes [[6]]"
+            ],
+            twists: [
+                "while his pet Gideon the basset hound live-tweets [[3]]",
+                "using Paul Laurence Dunbar quotes as passwords [[7]]",
+                "after finding LinkedIn endorsements from 1617 [[5]]",
+                "while streaming on a Commodore 64 [[8]]",
+                "despite being hunted by workflow ninjas [[4]]"
+            ]
+        };
 
-    function generateStory() {
-      const random = arr => arr[Math.floor(Math.random() * arr.length)];
-      
-      const story = `
-        Cornelius Johnson: ${random(data.traits)}, 
-        currently ${random(data.actions)} in ${random(data.locations)},
-        while ${random(data.quirks)}. 
-        His latest venture? ${random(data.actions)} 
-        with ${random(data.quirks)}!
-      `;
-      
-      document.getElementById('story').textContent = story;
-    }
+        function generateStory() {
+            const getRandom = arr => arr[Math.floor(Math.random() * arr.length)];
+            
+            const story = `
+                Rakai, the ${getRandom(storyElements.subjects)}, 
+                is ${getRandom(storyElements.actions)} 
+                in ${getRandom(storyElements.locations)} 
+                ${getRandom(storyElements.twists)}. 
+                His latest scheme? ${getRandom(storyElements.actions)} 
+                while ${getRandom(storyElements.twists)}!
+            `;
+            
+            document.getElementById('story-box').innerHTML = story.replace(/\n/g, '<br>');
+        }
 
-    generateStory();
-  </script>
+        generateStory();
+    </script>
 </body>
 </html>
