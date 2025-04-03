@@ -3,147 +3,106 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rakai's AI-Powered Random Story</title>
+  <title>Cornelius Johnson's Insane Chronicles</title>
   <style>
-    /* General Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    /* Body Styling */
     body {
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-      color: #333;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow-x: hidden;
-    }
-
-    /* Container Styling */
-    .container {
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 15px;
-      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-      width: 90%;
-      max-width: 600px;
-      padding: 2rem;
-      text-align: center;
-      overflow: hidden;
-    }
-
-    /* Heading Styling */
-    h1 {
-      font-size: 2.5rem;
-      color: #ff6f61;
-      margin-bottom: 1rem;
-    }
-
-    /* Paragraph Styling */
-    p {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      margin-bottom: 1.5rem;
-    }
-
-    /* Button Styling */
-    button {
-      background: #ff6f61;
+      font-family: 'Comic Sans MS', cursive;
+      background: linear-gradient(45deg, #ff00cc, #3333ff);
       color: white;
+      text-align: center;
+      padding: 20px;
+      min-height: 100vh;
+      animation: pulse 2s infinite;
+    }
+
+    h1 {
+      font-size: 3em;
+      text-shadow: 2px 2px 0px #000;
+    }
+
+    #story {
+      font-size: 1.5em;
+      margin: 20px;
+      line-height: 1.5;
+      background: rgba(0,0,0,0.3);
+      padding: 20px;
+      border-radius: 15px;
+    }
+
+    button {
+      background: #ff00cc;
       border: none;
-      padding: 0.8rem 1.5rem;
-      font-size: 1rem;
-      border-radius: 50px;
+      padding: 15px 30px;
+      font-size: 1.2em;
       cursor: pointer;
-      transition: background 0.3s ease;
+      animation: bounce 1s infinite;
     }
 
-    button:hover {
-      background: #ff4d4d;
+    @keyframes pulse {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
-    /* Loading Spinner */
-    .loading {
-      font-size: 1.2rem;
-      color: #ff6f61;
-      margin-top: 1rem;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2rem;
-      }
-      p {
-        font-size: 1rem;
-      }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-20px); }
+      60% { transform: translateY(-10px); }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Rakai's AI-Powered Random Story</h1>
-    <p id="story">Loading Rakai's story...</p>
-    <button onclick="generateStory()">Refresh Story</button>
-    <div id="loading" class="loading"></div>
-  </div>
+  <h1>CORNELIUS JOHNSON'S INSANE CHRONICLES</h1>
+  <div id="story">Generating madness...</div>
+  <button onclick="generateStory()">MORE CHAOS!</button>
 
   <script>
-    // Replace this with your actual OpenAI API key
-    const OPENAI_API_KEY = "YOUR_OPENAI_API_KEY";
+    const data = {
+      traits: [
+        "media mogul with a TikTok empire [[1]]", 
+        "eternal student at Chaffey College [[2]]",
+        "17th century Flemish portrait painter [[5]]",
+        "football star tight end [[6]]",
+        "asylum resident from 1883 [[8]]"
+      ],
+      actions: [
+        "creating Skibidi memes about basset hounds [[3]]",
+        "arguing with historical figures in Discord [[2]]",
+        "painting portraits of meme lords [[5]]",
+        "doing the Grimace Shake at Renaissance fairs [[6]]",
+        "writing manifestos about office-seeking [[7]]"
+      ],
+      locations: [
+        "a neon-lit Discord server [[2]]",
+        "1600s London art studio [[5]]",
+        "Michigan football stadium [[6]]",
+        "a surreal LinkedIn profile [[1]]",
+        "Esperanza's magical TikTok dimension [[3]]"
+      ],
+      quirks: [
+        "speaks in Shakespearean emojis 🎭📱 [[7]]",
+        "wears a Grimace costume to board meetings [[6]]",
+        "has a pet basset hound named Gideon [[3]]",
+        "runs marathons while reciting Paul Laurence Dunbar [[7]]",
+        "collects 17th century LinkedIn endorsements [[5]]"
+      ]
+    };
 
-    // Function to generate a story using OpenAI's API
-    async function generateStory() {
-      const storyElement = document.getElementById("story");
-      const loadingElement = document.getElementById("loading");
-
-      // Show loading message
-      storyElement.textContent = "";
-      loadingElement.textContent = "Generating story...";
-
-      try {
-        // Define the prompt for the AI
-        const prompt = `
-          Write a short, fun, and creative story about a boy named Rakai who loves memes, anime, and internet culture. 
-          Include details about his quirky personality, his favorite activities like creating Skibidi memes or drinking Grimace Shakes, 
-          and where he spends most of his time. Keep it lighthearted and no longer than 3 sentences.
-        `;
-
-        // Call the OpenAI API
-        const response = await fetch("https://api.openai.com/v1/completions", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${OPENAI_API_KEY}`,
-          },
-          body: JSON.stringify({
-            model: "text-davinci-003", // Use the desired model
-            prompt: prompt,
-            max_tokens: 100, // Limit the response length
-            temperature: 0.7, // Control creativity (higher = more creative)
-          }),
-        });
-
-        // Parse the response
-        const data = await response.json();
-        const aiGeneratedStory = data.choices[0].text.trim();
-
-        // Display the generated story
-        storyElement.textContent = aiGeneratedStory;
-        loadingElement.textContent = ""; // Clear loading message
-      } catch (error) {
-        console.error("Error generating story:", error);
-        storyElement.textContent = "Oops! Something went wrong. Please try again.";
-        loadingElement.textContent = ""; // Clear loading message
-      }
+    function generateStory() {
+      const random = arr => arr[Math.floor(Math.random() * arr.length)];
+      
+      const story = `
+        Cornelius Johnson: ${random(data.traits)}, 
+        currently ${random(data.actions)} in ${random(data.locations)},
+        while ${random(data.quirks)}. 
+        His latest venture? ${random(data.actions)} 
+        with ${random(data.quirks)}!
+      `;
+      
+      document.getElementById('story').textContent = story;
     }
 
-    // Generate story on page load
-    window.onload = generateStory;
+    generateStory();
   </script>
 </body>
 </html>
